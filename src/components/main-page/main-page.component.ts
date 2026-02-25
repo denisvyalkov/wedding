@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -8,11 +8,9 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './main-page.component.scss',
 })
 export class WedMainPageComponent {
-  protected readonly title = signal('wed');
-
   form: FormGroup = new FormGroup({
     fio: new FormControl(''),
-    food: new FormControl(''),
+    food: new FormControl('Нет'), // только добавил значение по умолчанию
     alco: new FormControl([]),
     allergic: new FormControl(''),
   });
@@ -22,30 +20,30 @@ export class WedMainPageComponent {
 
   faqItems = [
     {
-      title: 'Ещё раз, где и когда?',
+      title: '🗓️ Ещё раз, где и когда?',
       content:
         'Наша свадьба пройдёт 22 августа в резиденции Мария. Начало в 16:00. Да, лучше приехать заранее, чем опоздать',
       expanded: false,
     },
     {
-      title: 'А что дарить?',
+      title: '🎁 А что дарить?',
       content: 'Для нас лучший подарок это осуществление мечты. А мечты стоят дорого.',
       expanded: false,
     },
     {
-      title: 'А цветы?',
+      title: '💐 А цветы?',
       content:
         'Вместо букета в качестве презента мы будем рады бутылке вина или другого алкоголя, которую мы откроем на ближайшем семейном празднике',
       expanded: false,
     },
     {
-      title: 'Можно ли с детьми?',
+      title: '👶 Можно ли с детьми?',
       content:
         'Будем предельно благодарны, если всё ваше внимание будет приковано к нам, а за детками присмотрят те, кому вы доверяете',
       expanded: false,
     },
     {
-      title: 'Если возникли вопросы?',
+      title: '📞 Если возникли вопросы?',
       content:
         'свяжитесь с Денисом или Каролиной любым удобным способом или перечитайте пригласительное',
       expanded: false,
@@ -70,6 +68,7 @@ export class WedMainPageComponent {
       });
     }
   }
+
   isAlcoSelected(alco: string): boolean {
     const currentAlco = this.form.get('alco')?.value || [];
     return currentAlco.includes(alco);
