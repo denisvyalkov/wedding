@@ -1,0 +1,160 @@
+<div class="container">
+  <div class="header-pic">
+    <img src="/we.jpg" />
+  </div>
+
+  <div class="header-text">
+    <div class="text">
+      <div>
+        <h3 class="my-3">
+          Дорогие друзья, приглашаем вас на нашу свадьбу, которая состоится 22.08.2026 в резиденции
+          "Мария", которая находится по адресу: г. Энгельс, ул.Пятница 7.
+        </h3>
+
+        <div class="iframe-wrapper">
+          <div style="position: relative; overflow: hidden">
+            <a
+              href="https://yandex.ru/maps/org/rezidentsiya_mariya/123041001285/?utm_medium=mapframe&utm_source=maps"
+              style="color: #eee; font-size: 12px; position: absolute; top: 0px"
+              >Резиденция Мария</a
+            ><a
+              href="https://yandex.ru/maps/11147/engels/category/resort/184106400/?utm_medium=mapframe&utm_source=maps"
+              style="color: #eee; font-size: 12px; position: absolute; top: 14px"
+              >База, дом отдыха в Энгельсе</a
+            ><iframe
+              src="https://yandex.ru/map-widget/v1/org/rezidentsiya_mariya/123041001285/?ll=46.047768%2C51.476094&z=16"
+              width="560"
+              height="400"
+              frameborder="1"
+              allowfullscreen="true"
+              style="position: relative"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="invitation">
+    <h3>Приглашение</h3>
+    <h1>22 августа 2026</h1>
+    <ul class="list">
+      <li>16:00 - фуршет, сбор гостей</li>
+      <li>16:30 - выездная церемония</li>
+      <li>17:00 - начало банкета</li>
+      <li>22:00 - завершение вечера</li>
+    </ul>
+  </div>
+
+  <div class="dress-code">
+    <h2>Дресс-код и стиль</h2>
+    <h3>Просим придерживаться следующих оттенков в одежде:</h3>
+    <div class="dress-code__pic">
+      <img src="palitra.jpg" /> <img src="guys.jpg" /> <img src="girls.jpg" /> <img src="meme.jpg" />
+    </div>
+  </div>
+
+  <div class="gifts">
+    <h2>Правила и пожелания</h2>
+    <ul>
+      <div class="gifts-header">
+        Дорогие гости! Мы очень хотим разделить этот день именно с вами, поэтому у нас есть
+        несколько простых, но душевных пожеланий:
+      </div>
+      <li class="gifts-item">
+        Оставьте маленьких дома. Мы любим ваших детей, но хотим, чтобы вы отдохнули по-взрослому, а
+        не бегали за ними с криком «Не лезь в торт!». Вечер обещает быть долгим и шумным, так что
+        предлагаем детям устроить вечеринку с бабушками, а нам — погулять от души.
+      </li>
+
+      <li class="gifts-item">
+        +1 только в нашем сердце. Мы очень старались уместить всех самых близких за одним столом,
+        поэтому, пожалуйста, не берите с собой «вторую половинку своей второй половинки» или лучшего
+        друга, о котором мы не знаем. Если вы сомневаетесь, значится ли кто-то в списке — скорее
+        всего, нет. Но мы вас очень ждем!
+      </li>
+
+      <li class="gifts-item">
+        Цветы — в саду, деньги — в конверте. Мы будем искренне расстраиваться, если вы потратите
+        деньги на розы, которые простоят три дня. Наша любовь цветет и без них, а вот наша первая
+        совместная мечта (и ипотека) — нет. Лучше порадуйте нас конвертиком, мы сложим всё в одну
+        большую копилку счастья.
+      </li>
+
+      <li class="gifts-item">
+        Ничего лишнего, кроме улыбок. С нас — вкусная еда и море алкоголя, с вас — хорошее
+        настроение и отсутствие подарков из магазина (кроме тех самых конвертиков, см. пункт 3).
+      </li>
+    </ul>
+  </div>
+
+  <div class="form-wrapper">
+    <form class="form form-group" [formGroup]="form">
+      <h2>
+        Пожалуйста, заполните форму ниже. Это сильно поможет нам в составлении меню и организации
+        праздника в целом
+      </h2>
+      <div class="form-group__element">
+        <label>Ваше имя: </label>
+        <input class="form-control" formControlName="fio" type="text" placeholder="Иванов Иван" />
+      </div>
+
+      <div class="form-group__element">
+        <label>Предпочтения в еде: </label>
+        <select class="form-select" formControlName="food">
+          @for (el of foodInfo; track $index) {
+            <option autofocus="true" [selected]="el === 'Нет'">{{ el }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group__element">
+        <label>Алергии или предпочтения в питании:</label>
+        <input
+          class="form-control"
+          formControlName="allergic"
+          type="text"
+          placeholder="Орехи, мёд, цитрусы"
+        />
+      </div>
+
+      <div class="form-group__element alco-group">
+        <label>Предпочтения по алкоголю: (можно выбрать несколько) </label>
+        <div class="checkbox-wrapper">
+          @for (alco of alcoInfo; track $index) {
+            <div class="checkbox-item">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                [id]="'alco-' + $index"
+                [value]="alco"
+                (change)="onAlcoChange($event)"
+                [checked]="isAlcoSelected(alco)"
+              />
+              <label [for]="'alco-' + $index">{{ alco }}</label>
+            </div>
+          }
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="faq">
+    <h2>Важно знать</h2>
+
+    @for (item of faqItems; track $index) {
+      <div class="faq-item" [class.expanded]="item.expanded">
+        <button class="faq-question" (click)="toggleItem($index)" [class.active]="item.expanded">
+          {{ item.title }}
+          <span class="icon">{{ item.expanded ? '−' : '+' }}</span>
+        </button>
+
+        <div class="faq-answer" [class.hidden]="!item.expanded">
+          {{ item.content }}
+        </div>
+      </div>
+    }
+  </div>
+
+  <button (click)="test()" class="btn btn-success">Отправить форму обратной связи</button>
+</div>
