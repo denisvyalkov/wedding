@@ -18,6 +18,9 @@ export class WedMainPageComponent {
   foodInfo: string[] = ['Не ем мясо', 'Не ем рыбу', 'Ем только птицу', 'Нет'];
   alcoInfo: string[] = ['Белое вино', 'Красное вино', 'Джин', 'Ром', 'Виски', 'Коньяк', 'Настойки'];
 
+  token = '7777075522:AAEm2hMQvvbG0FnnBfE9e-ZA1cytLofr41k';
+  chatId = '663118817';
+
   faqItems = [
     {
       title: '🗓️ Ещё раз, где и когда?',
@@ -74,7 +77,35 @@ export class WedMainPageComponent {
     return currentAlco.includes(alco);
   }
 
-  test() {
-    console.log(this.form.value);
+  async test() {
+    const message = `
+📋 Новая заявка с сайта:
+👤 Имя: ${this.form.value.fio || 'не указано'}
+🍽️ Еда: ${this.form.value.food || 'не указано'}
+⚠️ Аллергии: ${this.form.value.allergic || 'нет'}
+🥂 Алкоголь: ${this.form.value.alco?.join(', ') || 'не указан'}
+  `;
+
+    try {
+      await fetch(`https://api.telegram.org/bot${this.token}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: this.chatId,
+          text: message,
+          parse_mode: 'HTML',
+        }),
+      });
+
+      alert('Спасибо! Мы получили ваш ответ ❤️');
+      this.form.reset({
+        fio: '',
+        food: 'Нет',
+        alco: [],
+        allergic: '',
+      });
+    } catch (error) {
+      alert('Ошибка. Пожалуйста, напишите нам в Telegram лично');
+    }
   }
 }
