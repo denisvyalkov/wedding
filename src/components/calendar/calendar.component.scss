@@ -1,0 +1,100 @@
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.calendar {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(255, 183, 197, 0.2);
+  border: 1px solid #ffb7c5;
+  width: 100%;
+  max-width: 400px;
+}
+
+.calendar-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px dashed #ffb7c5;
+
+  .month {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-right: 8px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .year {
+    font-size: 1.8rem;
+    color: #ff9eb0;
+    font-weight: 300;
+    font-family: 'Cormorant Garamond', serif;
+  }
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 15px;
+
+  span {
+    color: #ff9eb0;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  text-align: center;
+
+  .day {
+    padding: 10px 5px;
+    font-size: 1rem;
+    color: #555;
+    border-radius: 50%;
+    transition: all 0.3s;
+
+    &:hover:not(.empty) {
+      background-color: #fff9fa;
+      cursor: default;
+    }
+  }
+
+  .empty {
+    padding: 10px 5px;
+  }
+
+  .heart-day {
+    position: relative;
+    color: white;
+    font-weight: bold;
+    z-index: 1;
+
+    &::before {
+      content: '❤️';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.2rem;
+      z-index: -1;
+      opacity: 0.9;
+    }
+
+    &:hover::before {
+      transform: translate(-50%, -50%) scale(1.1);
+      transition: transform 0.3s;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { WedCalendarComponent } from '../calendar/calendar.component';
 
 interface FeedBackForm {
   fio: FormControl<string | null>;
@@ -10,7 +11,7 @@ interface FeedBackForm {
 }
 @Component({
   selector: 'wed-main-page',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, WedCalendarComponent],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
 })
@@ -55,7 +56,7 @@ export class WedMainPageComponent {
     {
       title: '📞 Если возникли вопросы?',
       content:
-        'свяжитесь с Денисом или Каролиной любым удобным способом или перечитайте пригласительное',
+        'Свяжитесь с Денисом или Каролиной любым удобным способом или перечитайте пригласительное',
       expanded: false,
     },
   ];

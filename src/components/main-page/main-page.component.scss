@@ -23,6 +23,21 @@
   }
 }
 
+$section-padding: 50px 20px;
+$section-margin: 50px 0;
+$primary-color: #ffb7c5;
+$white: #fff;
+
+@mixin section-base {
+  background-color: $white;
+  border: 1px solid $primary-color;
+  padding: $section-padding;
+  margin: $section-margin 0;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+}
+
 .container {
   div {
     border-radius: 10px;
@@ -39,10 +54,8 @@
   }
 
   .header-text {
-    background-color: white;
-    border: 1px solid;
-    margin: 10% 0;
-    display: flex;
+    @include section-base;
+
     justify-content: center;
     flex-direction: row;
     min-height: 350px;
@@ -57,10 +70,8 @@
   }
 
   .invitation {
-    background-color: white;
-    border: 1px solid;
-    padding: 100px 10px;
-    display: flex;
+    @include section-base;
+
     flex-direction: column;
 
     .list,
@@ -94,11 +105,8 @@
   }
 
   .dress-code {
-    background-color: white;
-    border: 1px solid;
-    padding: 100px 10px;
-    margin-top: 10%;
-    display: flex;
+    @include section-base;
+
     flex-direction: column;
 
     .dress-code__pic {
@@ -129,10 +137,7 @@
       margin: 0 auto;
       margin-bottom: 30px;
     }
-    margin-top: 10%;
-    border: 1px solid;
-    padding: 100px 10px;
-    display: flex;
+    @include section-base;
     flex-direction: column;
     justify-content: center;
     background-color: #fff;
@@ -173,10 +178,7 @@
   }
 
   .form-wrapper {
-    background-color: white;
-    margin-top: 10%;
-    padding: 100px 10px;
-    border: 1px solid black;
+    @include section-base;
 
     h2 {
       margin-bottom: 50px;
@@ -196,10 +198,8 @@
   }
 
   .faq {
-    background-color: white;
-    margin-top: 10%;
-    padding: 100px 10px;
-    border: 1px solid black;
+    @include section-base;
+    flex-direction: column;
 
     .faq-item {
       margin-bottom: 10px;
