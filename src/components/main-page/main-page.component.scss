@@ -1,148 +1,32 @@
-@media (max-width: 768px) {
-  .container .invitation,
-  .container .dress-code,
-  .container .gifts,
-  .container .form-wrapper,
-  .container .faq,
-  .container .header-text {
-    padding: 30px 15px;
-    margin: 30px 0;
-  }
-
-  .container .invitation .list {
-    margin: 10px auto;
-  }
-
-  .container .checkbox-wrapper .checkbox-item {
-    width: 50%;
-  }
-
-  .container .dress-code .dress-code__pic img {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .container .dress-code .dress-code__pic img:hover {
-    transform: none;
-  }
-
-  .container .iframe-wrapper {
-    width: 100%;
-  }
-
-  .container .iframe-wrapper iframe {
-    width: 100%;
-    height: 250px;
-  }
-
-  .container .faq .faq-question {
-    padding: 12px 15px;
-    font-size: 15px;
-  }
-
-  .container .faq .faq-answer {
-    padding: 15px;
-    font-size: 14px;
-  }
-
-  .container .form-wrapper h2 {
-    font-size: 1.3rem;
-    margin-bottom: 30px;
-  }
-
-  .container button.btn {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-  }
-
-  .container .gifts .gifts-list .gifts-item {
-    padding: 12px 15px;
-  }
-
-  .container h1 {
-    font-size: 1.8rem;
-  }
-
-  .container h2 {
-    font-size: 1.5rem;
-  }
-
-  .container h3 {
-    font-size: 1.2rem;
-  }
-
-  .container .header-text .text {
-    padding: 0;
-  }
-
-  img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-
-  .container {
-    .header-pic {
-      img {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-      }
-    }
-  }
-}
-
-.form-control:focus,
-.form-select:focus,
-.form-check-input:focus {
-  border-color: #ffb7c5 !important;
-  box-shadow: 0 0 0 0.25rem rgba(255, 183, 197, 0.25) !important;
-  outline: 0;
-}
-
-.form-check-input:checked {
-  background-color: #ffb7c5;
-  border-color: #ffb7c5;
-}
-
-$section-padding: 50px 20px;
-$section-margin: 50px 0;
-$primary-color: #ffb7c5;
+$primary: #ffb7c5;
+$primary-dark: #ff9eb0;
 $white: #fff;
+$border: 1px solid $primary;
 
-@mixin section-base {
-  background-color: $white;
-  border: 1px solid $primary-color;
-  padding: $section-padding;
-  margin: $section-margin 0;
+@mixin section {
+  background: $white;
+  border: $border;
   border-radius: 15px;
+  padding: 50px 20px;
+  margin: 50px 0;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  display: flex;
 }
 
 .container {
-  div {
-    border-radius: 10px;
-  }
-
   width: 100%;
   text-align: center;
 
-  .header-pic {
-    display: flex;
-    justify-content: center;
-    img {
-      width: 1000px;
-    }
+  .header-pic img {
+    width: 1000px;
+    max-width: 100%;
+    margin: 0 auto;
   }
 
   .header-text {
-    @include section-base;
-
-    justify-content: center;
-    flex-direction: row;
+    @include section;
     min-height: 350px;
+    justify-content: center;
+    align-items: center;
 
     .text {
       padding: 30px;
@@ -154,198 +38,146 @@ $white: #fff;
   }
 
   .invitation {
-    @include section-base;
-    text-align: center;
-
+    @include section;
     flex-direction: column;
-
-    .list,
-    h1,
-    h2,
-    h3 {
-      margin: 10px auto;
-    }
 
     .timeline {
       list-style: none;
       padding: 0;
-      width: 50%;
-      max-width: 400px;
+      width: min(400px, 50%);
+      margin: 10px auto;
       text-align: left;
 
       li {
         padding: 8px 0;
-        border-bottom: 1px dashed #ffb7c5;
-
+        border-bottom: 1px dashed $primary;
         &:last-child {
-          border-bottom: none;
+          border: 0;
         }
       }
 
       .time {
         font-weight: 600;
-        color: #ff9eb0;
+        color: $primary-dark;
         margin-right: 10px;
       }
     }
   }
 
   .dress-code {
-    @include section-base;
-
+    @include section;
     flex-direction: column;
 
-    .dress-code__pic {
+    &__pic {
       display: flex;
-      justify-content: space-around;
       flex-wrap: wrap;
-    }
+      justify-content: space-around;
+      gap: 20px;
 
-    h2,
-    h3 {
-      margin: 10px auto;
-    }
-
-    img {
-      margin-top: 20px;
-      width: 600px;
-      transition: transform 300ms;
-
-      &:hover {
-        transform: scale(1.11);
-        transition: transform 300ms;
-      }
-    }
-  }
-
-  .gifts {
-    h2 {
-      margin: 0 auto;
-      margin-bottom: 30px;
-    }
-    @include section-base;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #fff;
-
-    &-header,
-    &-item {
-      margin-bottom: 20px;
-    }
-    .gifts-list {
-      .gifts-header {
-        font-size: 1.2rem;
-        font-weight: 500;
-        margin-bottom: 30px;
-        color: #666;
-        font-style: italic;
-        text-align: center;
-      }
-
-      .gifts-item {
-        position: relative;
-        padding: 15px 20px 15px 25px;
-        margin-bottom: 15px;
-        background-color: #fff9fa;
-        border-radius: 10px;
-        border-left: 4px solid #ffb7c5;
-        border-right: 4px solid #ffb7c5;
-
-        line-height: 1.6;
-
-        strong {
-          color: #ff9eb0;
-          display: block;
-          margin-bottom: 5px;
-          font-size: 1.1rem;
+      img {
+        width: min(600px, 100%);
+        transition: transform 0.3s;
+        &:hover {
+          transform: scale(1.11);
         }
       }
     }
   }
 
-  .form-wrapper {
-    @include section-base;
+  .gifts {
+    @include section;
+    flex-direction: column;
 
-    h2 {
-      margin-bottom: 50px;
+    &-header {
+      font-size: 1.2rem;
+      color: #666;
+      font-style: italic;
+      margin-bottom: 30px;
     }
+
+    &-item {
+      padding: 15px 20px 15px 25px;
+      margin-bottom: 15px;
+      background: #fff9fa;
+      border-left: 4px solid $primary;
+      border-right: 4px solid $primary;
+      border-radius: 10px;
+      line-height: 1.6;
+
+      strong {
+        color: $primary-dark;
+        display: block;
+        margin-bottom: 5px;
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .form-wrapper {
+    @include section;
 
     .form-group__element {
       margin-top: 10px;
       display: flex;
       flex-direction: column;
     }
-
-    .alco-group {
-      .form-check-input {
-        margin-right: 5px;
-      }
-    }
   }
 
   .faq {
-    @include section-base;
+    @include section;
     flex-direction: column;
 
-    .faq-item {
+    &-item {
       margin-bottom: 10px;
       border: 1px solid #ddd;
       border-radius: 8px;
       overflow: hidden;
     }
 
-    .faq-question {
+    &-question {
       width: 100%;
       padding: 15px 20px;
-      background-color: #f8f9fa;
+      background: #f8f9fa;
       border: none;
-      text-align: left;
-      font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-weight: 500;
+      cursor: pointer;
+
+      &:hover,
+      &.active {
+        background: #e9ecef;
+      }
+
+      &.active {
+        border-bottom: 1px solid #ddd;
+      }
     }
 
-    .faq-question:hover {
-      background: #e9ecef;
-    }
+    &-answer {
+      max-height: 300px;
+      opacity: 1;
+      padding: 20px;
+      background: $white;
+      transition: all 0.3s;
+      overflow: hidden;
 
-    .faq-question.active {
-      background: #e9ecef;
-      border-bottom: 1px solid #ddd;
+      &.hidden {
+        max-height: 0;
+        opacity: 0;
+        padding: 0 20px;
+      }
     }
 
     .icon {
       font-size: 20px;
       font-weight: bold;
     }
-
-    .faq-answer {
-      box-sizing: border-box;
-      max-height: 300px;
-      opacity: 1;
-      padding: 20px;
-      background: white;
-      line-height: 1.6;
-      color: #333;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow: hidden;
-    }
-
-    .faq-answer.hidden {
-      max-height: 0;
-      opacity: 0;
-      padding: 0 20px;
-      margin: 0;
-      box-sizing: border-box;
-    }
   }
 
   .checkbox-wrapper {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
 
     .checkbox-item {
@@ -355,12 +187,67 @@ $white: #fff;
   }
 
   .iframe-wrapper {
-    width: max-content;
+    width: fit-content;
     margin: 0 auto;
+
     iframe {
       max-width: 100%;
-      height: auto;
       min-height: 300px;
+    }
+  }
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: $primary !important;
+  box-shadow: 0 0 0 0.25rem rgba(255, 183, 197, 0.25) !important;
+}
+
+.form-check-input:checked {
+  background-color: $primary;
+  border-color: $primary;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    .invitation,
+    .dress-code,
+    .gifts,
+    .form-wrapper,
+    .faq,
+    .header-text {
+      padding: 30px 15px;
+      margin: 30px 0;
+    }
+
+    .checkbox-wrapper .checkbox-item {
+      width: 50%;
+    }
+
+    .iframe-wrapper iframe {
+      height: 250px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    h3 {
+      font-size: 1.2rem;
+    }
+
+    button.btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
     }
   }
 }
