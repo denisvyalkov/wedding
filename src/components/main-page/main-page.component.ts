@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
@@ -18,8 +19,9 @@ export class WedMainPageComponent {
   foodInfo: string[] = ['Не ем мясо', 'Не ем рыбу', 'Ем только птицу', 'Нет'];
   alcoInfo: string[] = ['Белое вино', 'Красное вино', 'Джин', 'Ром', 'Виски', 'Коньяк', 'Настойки'];
 
-  token = '7777075522:AAEm2hMQvvbG0FnnBfE9e-ZA1cytLofr41k';
-  chatId = '663118817';
+  readonly #token = '7777075522:AAEm2hMQvvbG0FnnBfE9e-ZA1cytLofr41k';
+  readonly #chatId = '663118817';
+  readonly #telegramApi = `https://api.telegram.org/bot${this.#token}/sendMessage`;
 
   faqItems = [
     {
@@ -53,6 +55,8 @@ export class WedMainPageComponent {
     },
   ];
 
+  constructor(private http: HttpClient) {}
+
   toggleItem(index: number) {
     this.faqItems[index].expanded = !this.faqItems[index].expanded;
   }
@@ -77,7 +81,7 @@ export class WedMainPageComponent {
     return currentAlco.includes(alco);
   }
 
-  async test() {
+  sendToTelegram() {
     const message = `
 📋 Новая заявка с сайта:
 👤 Имя: ${this.form.value.fio || 'не указано'}
@@ -86,26 +90,27 @@ export class WedMainPageComponent {
 🥂 Алкоголь: ${this.form.value.alco?.join(', ') || 'не указан'}
   `;
 
-    try {
-      await fetch(`https://api.telegram.org/bot${this.token}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: this.chatId,
-          text: message,
-          parse_mode: 'HTML',
-        }),
-      });
+    const body = {
+      chat_id: this.#chatId,
+      text: message,
+      parse_mode: 'HTML',
+    };
 
-      alert('Спасибо! Мы получили ваш ответ ❤️');
-      this.form.reset({
-        fio: '',
-        food: 'Нет',
-        alco: [],
-        allergic: '',
-      });
-    } catch (error) {
-      alert('Ошибка. Пожалуйста, напишите нам в Telegram лично');
-    }
+    this.http.post(this.#telegramApi, body).subscribe({
+      next: (response) => {
+        console.log('Успешно отправлено:', response);
+        alert('Спасибо! Мы получили ваш ответ ❤️');
+        this.form.reset({
+          fio: '',
+          food: 'Нет',
+          alco: [],
+          allergic: '',
+        });
+      },
+      error: (error) => {
+        console.error('Ошибка:', error);
+        alert('Ошибка. Проверьте консоль');
+      },
+    });
   }
 }

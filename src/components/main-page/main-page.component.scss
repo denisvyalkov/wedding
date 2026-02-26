@@ -69,6 +69,30 @@
     h3 {
       margin: 10px auto;
     }
+
+    /*  Стили для блоков пожеланий от нейросетки */
+
+    .timeline {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+      max-width: 400px;
+
+      li {
+        padding: 8px 0;
+        border-bottom: 1px dashed #ffb7c5;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      .time {
+        font-weight: 600;
+        color: #ff9eb0;
+        margin-right: 10px;
+      }
+    }
   }
 
   .dress-code {
@@ -77,8 +101,13 @@
     padding: 100px 10px;
     margin-top: 10%;
     display: flex;
-    justify-content: center;
     flex-direction: column;
+
+    .dress-code__pic {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
 
     h2,
     h3 {
@@ -87,7 +116,7 @@
 
     img {
       margin-top: 20px;
-      width: 500px;
+      width: 600px;
       transition: transform 300ms;
 
       &:hover {
@@ -113,6 +142,35 @@
     &-header,
     &-item {
       margin-bottom: 20px;
+    }
+    .gifts-list {
+      .gifts-header {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 30px;
+        color: #666;
+        font-style: italic;
+        text-align: center;
+      }
+
+      .gifts-item {
+        position: relative;
+        padding: 15px 20px 15px 25px;
+        margin-bottom: 15px;
+        background-color: #fff9fa;
+        border-radius: 10px;
+        border-left: 4px solid #ffb7c5;
+        border-right: 4px solid #ffb7c5;
+
+        line-height: 1.6;
+
+        strong {
+          color: #ff9eb0;
+          display: block;
+          margin-bottom: 5px;
+          font-size: 1.1rem;
+        }
+      }
     }
   }
 
@@ -178,7 +236,6 @@
     .icon {
       font-size: 20px;
       font-weight: bold;
-      transition: transform 0.3s;
     }
 
     .faq-answer {
@@ -210,66 +267,12 @@
       margin-top: 1%;
     }
   }
-}
 
-/*  Стили для блоков пожеланий от нейросетки */
-
-.timeline {
-  list-style: none;
-  padding: 0;
-  width: 100%;
-  max-width: 400px;
-
-  li {
-    padding: 8px 0;
-    border-bottom: 1px dashed #ffb7c5;
-
-    &:last-child {
-      border-bottom: none;
+  .iframe-wrapper {
+    iframe {
+      max-width: 100%;
+      height: auto;
+      min-height: 300px;
     }
-  }
-
-  .time {
-    font-weight: 600;
-    color: #ff9eb0;
-    margin-right: 10px;
-  }
-}
-
-.gifts-list {
-  .gifts-header {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 30px;
-    color: #666;
-    font-style: italic;
-    text-align: center;
-  }
-
-  .gifts-item {
-    position: relative;
-    padding: 15px 20px 15px 25px;
-    margin-bottom: 15px;
-    background-color: #fff9fa;
-    border-radius: 10px;
-    border-left: 4px solid #ffb7c5;
-    border-right: 4px solid #ffb7c5;
-
-    line-height: 1.6;
-
-    strong {
-      color: #ff9eb0;
-      display: block;
-      margin-bottom: 5px;
-      font-size: 1.1rem;
-    }
-  }
-}
-
-.iframe-wrapper {
-  iframe {
-    max-width: 100%;
-    height: auto;
-    min-height: 300px;
   }
 }
