@@ -70,8 +70,6 @@
       margin: 10px auto;
     }
 
-    /*  Стили для блоков пожеланий от нейросетки */
-
     .timeline {
       list-style: none;
       padding: 0;
@@ -239,6 +237,7 @@
     }
 
     .faq-answer {
+      box-sizing: border-box;
       max-height: 300px;
       opacity: 1;
       padding: 20px;
@@ -254,6 +253,7 @@
       opacity: 0;
       padding: 0 20px;
       margin: 0;
+      box-sizing: border-box;
     }
   }
 

@@ -2,6 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
+interface FeedBackForm {
+  fio: FormControl<string | null>;
+  food: FormControl<string | null>;
+  alco: FormControl<string[] | null>;
+  allergic: FormControl<string | null>;
+}
 @Component({
   selector: 'wed-main-page',
   imports: [ReactiveFormsModule],
@@ -9,19 +15,18 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './main-page.component.scss',
 })
 export class WedMainPageComponent {
-  form: FormGroup = new FormGroup({
+  form: FormGroup<FeedBackForm> = new FormGroup({
     fio: new FormControl(''),
-    food: new FormControl('Нет'), // только добавил значение по умолчанию
-    alco: new FormControl([]),
+    food: new FormControl('Нет'),
+    alco: new FormControl(['']),
     allergic: new FormControl(''),
   });
 
   foodInfo: string[] = ['Не ем мясо', 'Не ем рыбу', 'Ем только птицу', 'Нет'];
   alcoInfo: string[] = ['Белое вино', 'Красное вино', 'Джин', 'Ром', 'Виски', 'Коньяк', 'Настойки'];
 
-  readonly #token = '7777075522:AAEm2hMQvvbG0FnnBfE9e-ZA1cytLofr41k';
   readonly #chatId = '663118817';
-  readonly #telegramApi = `https://api.telegram.org/bot${this.#token}/sendMessage`;
+  readonly #telegramApi = `https://api.telegram.org/bot7777075522:AAEm2hMQvvbG0FnnBfE9e-ZA1cytLofr41k/sendMessage`;
 
   faqItems = [
     {
@@ -67,11 +72,11 @@ export class WedMainPageComponent {
 
     if (event.target.checked) {
       this.form.patchValue({
-        alco: [...currentAlco, alcoValue],
+        alco: [...currentAlco.filter((item) => item), alcoValue],
       });
     } else {
       this.form.patchValue({
-        alco: currentAlco.filter((item: string) => item !== alcoValue),
+        alco: currentAlco.filter((item: string) => item && item !== alcoValue),
       });
     }
   }
@@ -96,9 +101,8 @@ export class WedMainPageComponent {
       parse_mode: 'HTML',
     };
 
-    this.http.post(this.#telegramApi, body).subscribe({
-      next: (response) => {
-        console.log('Успешно отправлено:', response);
+    this.http.post(this.#telegramApi, body).subscribe(
+      (ok) => {
         alert('Спасибо! Мы получили ваш ответ ❤️');
         this.form.reset({
           fio: '',
@@ -107,10 +111,10 @@ export class WedMainPageComponent {
           allergic: '',
         });
       },
-      error: (error) => {
-        console.error('Ошибка:', error);
+      (err) => {
+        console.error('Ошибка:', err);
         alert('Ошибка. Проверьте консоль');
       },
-    });
+    );
   }
 }
