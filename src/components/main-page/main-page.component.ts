@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { WedCalendarComponent } from '../calendar/calendar.component';
 
 interface FeedBackForm {
@@ -17,13 +17,17 @@ interface FeedBackForm {
 })
 export class WedMainPageComponent {
   form: FormGroup<FeedBackForm> = new FormGroup({
-    fio: new FormControl(''),
-    food: new FormControl('Нет'),
+    fio: new FormControl('', [
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(30),
+      Validators.pattern(/^[а-яА-ЯёЁ\s]+$/),
+    ]),
+    food: new FormControl('', Validators.maxLength(40)),
     alco: new FormControl(['']),
-    allergic: new FormControl(''),
+    allergic: new FormControl('', Validators.maxLength(40)),
   });
 
-  foodInfo: string[] = ['Не ем мясо', 'Не ем рыбу', 'Ем только птицу', 'Нет'];
   alcoInfo: string[] = ['Белое вино', 'Красное вино', 'Джин', 'Ром', 'Виски', 'Коньяк', 'Настойки'];
 
   readonly #chatId = '663118817';
@@ -39,6 +43,12 @@ export class WedMainPageComponent {
     {
       title: '🎁 А что дарить?',
       content: 'Для нас лучший подарок это осуществление мечты. А мечты стоят дорого.',
+      expanded: false,
+    },
+    {
+      title: '🎀 Если я подготовил(а) сюрприз?',
+      content:
+        '   Мы знаем, что наши гости очень творческие. Если вы подготовили для нас сюрприз или творческий подарок, не забудьте предупредить нашего координатора Алину:+7 961 646 54 90. Она поможет воплотить в жизнь вашу идею и ответит на все вопросы.',
       expanded: false,
     },
     {

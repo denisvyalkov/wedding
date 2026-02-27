@@ -101,20 +101,27 @@
       </h2>
       <div class="form-group__element">
         <label>Ваше имя: </label>
-        <input class="form-control" formControlName="fio" type="text" placeholder="Иванов Иван" />
+        <input
+          class="form-control"
+          [class.error]="form.controls['fio'].invalid && form.controls['fio'].dirty"
+          formControlName="fio"
+          type="text"
+          placeholder="Иванов Иван"
+        />
       </div>
 
       <div class="form-group__element">
         <label>Предпочтения в еде: </label>
-        <select class="form-select" formControlName="food">
-          @for (el of foodInfo; track $index) {
-            <option [value]="el">{{ el }}</option>
-          }
-        </select>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="food"
+          placeholder="Не ем мясо, не ем рыбу, ем всё"
+        />
       </div>
 
       <div class="form-group__element">
-        <label>Алергии или предпочтения в питании:</label>
+        <label>Алергии или что-то иное, что нам нужно знать:</label>
         <input
           class="form-control"
           formControlName="allergic"
@@ -142,6 +149,9 @@
         </div>
       </div>
     </form>
+    <button (click)="sendToTelegram()" [disabled]="form.invalid" class="btn">
+      Отправить форму обратной связи
+    </button>
   </div>
 
   <div class="faq">
@@ -160,8 +170,4 @@
       </div>
     }
   </div>
-
-  <button (click)="sendToTelegram()" class="btn btn-success my-2">
-    Отправить форму обратной связи
-  </button>
 </div>
