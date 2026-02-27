@@ -11,32 +11,33 @@ $border: 1px solid $primary;
     .form-wrapper,
     .faq,
     .header-text {
-      width: 100%;
-      margin: 30px 0;
+      width: 98% !important;
+      padding: 10px !important;
+    }
+    .timeline {
+      width: auto !important;
     }
 
     .checkbox-wrapper .checkbox-item {
-      width: 50%;
+      display: flex;
     }
 
     .iframe-wrapper iframe {
       height: 250px;
     }
 
-    h1 {
-      font-size: 1.8rem;
-    }
-    h2 {
-      font-size: 1.5rem;
-    }
-    h3 {
-      font-size: 1.2rem;
+    .btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
     }
 
-    button.btn {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
+    .gifts-item {
+      font-size: 1rem;
+    }
+
+    .checkbox-item {
+      width: 50% !important;
     }
   }
 }
@@ -48,7 +49,7 @@ $border: 1px solid $primary;
   margin: 50px 0;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   width: 70%;
-  padding: 10px 20px;
+  padding: 20px 25px;
 }
 
 .container {
@@ -61,12 +62,13 @@ $border: 1px solid $primary;
     width: 1000px;
     max-width: 100%;
     margin: 0 auto;
+    border-radius: 15px;
   }
 
   .header-text {
     @include section;
-    padding: 50px 30px;
-    min-height: 350px;
+    padding: 40px 30px;
+    min-height: auto;
     justify-content: center;
     align-items: center;
 
@@ -89,7 +91,7 @@ $border: 1px solid $primary;
       text-align: left;
 
       li {
-        padding: 8px 0;
+        padding: 10px 0;
         border-bottom: 1px dashed $primary;
         &:last-child {
           border: 0;
@@ -116,6 +118,7 @@ $border: 1px solid $primary;
 
       img {
         width: min(600px, 100%);
+        border-radius: 10px;
         transition: transform 0.3s;
         &:hover {
           transform: scale(1.11);
@@ -136,13 +139,14 @@ $border: 1px solid $primary;
     }
 
     &-item {
-      padding: 15px 20px 15px 25px;
+      padding: 18px 22px 18px 27px;
       margin-bottom: 15px;
       background: #fff9fa;
       border-left: 4px solid $primary;
-      border-right: 4px solid $primary;
+      // border-right: 4px solid $primary;
       border-radius: 10px;
       line-height: 1.6;
+      font-size: 1.05rem;
 
       strong {
         color: $primary-dark;
@@ -157,19 +161,66 @@ $border: 1px solid $primary;
     @include section;
 
     .form-group__element {
-      margin-top: 10px;
+      margin-top: 15px;
       display: flex;
       flex-direction: column;
+      text-align: left;
+
+      label {
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
+
+      input {
+        padding: 10px 12px;
+        border: 2px solid #e1e1e1;
+        border-radius: 8px;
+        font-size: 1rem;
+
+        &:focus {
+          border-color: $primary;
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(255, 183, 197, 0.25);
+        }
+      }
 
       .error {
         border: 1px solid red;
       }
     }
 
+    .checkbox-wrapper {
+      margin-top: 10px;
+      background: #fafafa;
+      padding: 12px;
+      border-radius: 8px;
+
+      .checkbox-item {
+        input {
+          accent-color: $primary;
+        }
+      }
+    }
+
     .btn {
       background-color: $primary;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover:not(:disabled) {
+        background-color: $primary-dark;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 183, 197, 0.4);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
     }
   }
 
@@ -193,16 +244,17 @@ $border: 1px solid $primary;
       justify-content: space-between;
       align-items: center;
       font-weight: 500;
+      font-size: 1.1rem;
       cursor: pointer;
       text-align: left;
 
       &:hover,
       &.active {
-        background: #e9ecef;
+        background: #fff0f2;
       }
 
       &.active {
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid $primary;
       }
     }
 
@@ -213,6 +265,8 @@ $border: 1px solid $primary;
       background: $white;
       transition: all 0.3s;
       overflow: hidden;
+      line-height: 1.6;
+      text-align: left;
 
       &.hidden {
         max-height: 0;
@@ -249,6 +303,8 @@ $border: 1px solid $primary;
     iframe {
       max-width: 100%;
       min-height: 300px;
+      border-radius: 10px;
+      border: none;
     }
   }
 }
@@ -263,6 +319,10 @@ $border: 1px solid $primary;
 .form-check-input:checked {
   background-color: $primary;
   border-color: $primary;
+}
+
+.form-check-input {
+  accent-color: $primary;
 }
 
 .my-3 {
