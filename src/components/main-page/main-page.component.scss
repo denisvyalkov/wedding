@@ -11,7 +11,7 @@ $border: 1px solid $primary;
     .form-wrapper,
     .faq,
     .header-text {
-      width: 98% !important;
+      width: 95% !important;
       padding: 10px !important;
     }
     .timeline {
@@ -29,7 +29,8 @@ $border: 1px solid $primary;
     .btn {
       width: 100%;
       padding: 14px;
-      font-size: 16px;
+      font-size: 16px !important;
+      font-weight: 400 !important;
     }
 
     .gifts-item {
@@ -103,6 +104,9 @@ $border: 1px solid $primary;
         color: $primary-dark;
         margin-right: 10px;
       }
+    }
+    img {
+      width: 100%;
     }
   }
 
@@ -208,8 +212,10 @@ $border: 1px solid $primary;
       border: none;
       padding: 12px 20px;
       border-radius: 10px;
-      font-weight: 600;
       cursor: pointer;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 25px;
 
       &:hover:not(:disabled) {
         background-color: $primary-dark;
