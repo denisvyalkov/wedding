@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background: url('/bg.jpg') 0 0/100% auto repeat;
+  background: url('/bg1.jpg') 0 0/50% auto repeat;
 }
 
 body {
@@ -26,7 +26,10 @@ h3 {
   font-size: 1.75rem;
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
+  body {
+    background: url('/bg1.jpg') 0 0/100% auto repeat;
+  }
   h1 {
     font-size: 2rem;
   }
