@@ -23,9 +23,9 @@ export class WedMainPageComponent {
       Validators.maxLength(30),
       Validators.pattern(/^[а-яА-ЯёЁ\s]+$/),
     ]),
-    food: new FormControl('', Validators.maxLength(40)),
+    food: new FormControl('', Validators.maxLength(150)),
     alco: new FormControl(['']),
-    allergic: new FormControl('', Validators.maxLength(40)),
+    allergic: new FormControl('', Validators.maxLength(150)),
   });
 
   alcoInfo: string[] = ['Белое вино', 'Красное вино', 'Джин', 'Ром', 'Виски', 'Коньяк', 'Настойки'];
