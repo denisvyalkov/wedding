@@ -37,7 +37,7 @@
   </div>
 
   <div class="invitation collage">
-    <img src="collage.jpg">
+    <img src="collage.jpg" />
   </div>
 
   <div class="invitation">
@@ -164,7 +164,11 @@
     @for (item of faqItems; track $index) {
       <div class="faq-item" [class.expanded]="item.expanded">
         <button class="faq-question" (click)="toggleItem($index)" [class.active]="item.expanded">
-          {{ item.title }}
+          <span>{{ item.title }} 
+            @if(item.new){
+              <span class="faq-item__new">new</span>
+            }
+          </span>
           <span class="icon">{{ item.expanded ? '−' : '+' }}</span>
         </button>
 

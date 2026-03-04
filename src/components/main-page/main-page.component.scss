@@ -239,6 +239,13 @@ $border: 1px solid $primary;
       border: 1px solid #ddd;
       border-radius: 8px;
       overflow: hidden;
+
+      &__new {
+        color: #ffb7c5;
+        border: 1px solid;
+        padding: 2px 3px;
+        margin-left: 10px;
+      }
     }
 
     &-question {
